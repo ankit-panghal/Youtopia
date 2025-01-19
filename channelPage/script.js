@@ -1,15 +1,16 @@
 import timeFormatter from "../utils/timeFormatter.js";
 import videoDetail from "../utils/videoDetail.js";
 
+document.title = localStorage.getItem('channelName')
+
 document.querySelector('.go-home').addEventListener('click',() => {
 	window.location.href = '/';
  })
-document.title = localStorage.getItem('channelName')
-
+ 
 document.querySelector('.heading').innerText = `${document.title} Videos`
 
+// Rendering Channel Data on UI 
 function renderChannel(data){
-	
     document.querySelector('.channel-box').innerHTML = `
 	<div>
 	   <div class='banner-img'>
@@ -27,21 +28,23 @@ function renderChannel(data){
 	</div>`
 }
 
+// Fetching Channel Data on UI
 async function fetchChannelData(){
     const url = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics,brandingSettings&id=${localStorage.getItem('channelId')}&key=AIzaSyAAPv-yP7JbHWvD5ou9EySt5xnD1K-Vlqc`;
-try {
+    try {
 	const response = await fetch(url);
 	const result = await response.json();
-	console.log(result.items[0]);
+	// console.log(result.items[0]);
 	renderChannel(result.items[0])
-} catch (error) {
+    } catch (error) {
 	console.error(error);
-}
+    }
 }
 fetchChannelData();
 
 const container = document.querySelector('.channel-videos')
 
+// Rendering Channel Videos on UI
 function renderVideos(data){
     container.innerHTML ='';
     data.forEach((item) => {
@@ -56,15 +59,16 @@ function renderVideos(data){
         videoImg.addEventListener('click',() => videoDetail(item.id.videoId))  
         const videoTitle = div.querySelector('.video-title');
         videoTitle.addEventListener('click',() => videoDetail(item.id.videoId))
-})
-    }
+    })
+}
 
+// Fetching Channel Videos Data
 async function fetchChannelVideos(){
 	const url = `https://www.googleapis.com/youtube/v3/search?channelId=${localStorage.getItem('channelId')}&part=snippet&order=date&type=video&maxResults=50&key=AIzaSyAAPv-yP7JbHWvD5ou9EySt5xnD1K-Vlqc`;
 	try {
 		const response = await fetch(url);
 		const result = await response.json();
-		console.log(result.items);
+		// console.log(result.items);
 		renderVideos(result.items);
 	} catch (error) {
 		console.error(error);

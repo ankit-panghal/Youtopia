@@ -1,6 +1,6 @@
 import videoCategories from "./utils/videoCategories.js";
 import videoDetail from "./utils/videoDetail.js";
-
+import fetchChannel from "./utils/channelDataSetter.js";
 let searchInput = document.getElementById("searchInput");
 const searchIcon = document.querySelector('.searchIcon')
 const container = document.getElementById("container");
@@ -20,7 +20,7 @@ function renderCategories(data){
 }
 renderCategories(videoCategories)
 
-
+// Category wise Fetching Details
 document.querySelector('.container-top').addEventListener('click',(e) => {
     const text = e.target.innerText;
     const arr = Array.from(document.querySelectorAll('.item'));
@@ -35,10 +35,12 @@ document.querySelector('.container-top').addEventListener('click',(e) => {
     fetchDetails(text);
 })
 
+// Adding Loader to document
 const loader = document.createElement('div');
 loader.className = 'loader'
 document.getElementById('container').appendChild(loader);
 
+// Fetching Videos Data
     async function fetchDetails(search){
         if(loader.className === 'loader')loader.classList.add('active')
         
@@ -47,7 +49,6 @@ document.getElementById('container').appendChild(loader);
         try {
             const response = await fetch(url);
             const result = await response.json();
-            // console.log(result.items);
             renderVideos(result.items)
         } catch (error) {
             loader.classList.remove('active');
@@ -55,7 +56,8 @@ document.getElementById('container').appendChild(loader);
         } 
     }
    fetchDetails('');
-
+   
+//    Storing Channel Id & Title 
     function fetchChannel(item){
         localStorage.setItem('channelId',item.snippet.channelId);
         localStorage.setItem('channelName',item.snippet.channelTitle)
@@ -64,6 +66,7 @@ document.getElementById('container').appendChild(loader);
 
     //Rendering videos on UI
      function renderVideos(data){
+         loader.classList.remove('active');
         container.innerHTML ="";
         data.forEach((item) => {
         const div = document.createElement("div");
@@ -72,8 +75,9 @@ document.getElementById('container').appendChild(loader);
         <div class="video-title">${item.snippet.title.substr(0,50)}...</div>
         <div class="channel-name">${item.snippet.channelTitle}</div>
         </div>`
+
         container.appendChild(div); 
-        loader.classList.remove('active');
+
         const videoImg = div.querySelector('.video-img');
         videoImg.addEventListener('click',() => videoDetail(item.id.videoId))  
         const videoTitle = div.querySelector('.video-title');
