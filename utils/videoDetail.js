@@ -10,6 +10,6 @@ async function videoDetail(id){
     catch(err){
        console.log(err.message)
     }
-    window.location.href = '/videoPage'
+    window.location.href = './videoPage'
 }
 export default videoDetail

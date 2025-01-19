@@ -1,6 +1,7 @@
 import videoCategories from "./utils/videoCategories.js";
 import videoDetail from "./utils/videoDetail.js";
 import fetchChannel from "./utils/channelDataSetter.js";
+
 let searchInput = document.getElementById("searchInput");
 const searchIcon = document.querySelector('.searchIcon')
 const container = document.getElementById("container");
@@ -57,13 +58,6 @@ document.getElementById('container').appendChild(loader);
     }
    fetchDetails('');
    
-//    Storing Channel Id & Title 
-    function fetchChannel(item){
-        localStorage.setItem('channelId',item.snippet.channelId);
-        localStorage.setItem('channelName',item.snippet.channelTitle)
-         window.location.href = './ChannelPage'
-    }
-
     //Rendering videos on UI
      function renderVideos(data){
          loader.classList.remove('active');
