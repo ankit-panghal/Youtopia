@@ -1,0 +1,267 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+  color: white;
+}
+html{
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar{
+  width: 12px;
+}
+::-webkit-scrollbar-track{
+  background-color: black;
+}
+::-webkit-scrollbar-thumb{
+  background-color: grey;
+  border-radius: 10px;
+}
+nav {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+}
+nav .left {
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.left > img{
+   display: none;
+}
+nav .left div{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+nav .left div:hover{
+  cursor: pointer;
+}
+nav .yt-logo{
+  width: 30px;
+}
+nav .logo-name{
+  font-weight: 600;
+}
+nav .center {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 30vw;
+}
+.center .search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 5vh;
+  width: 90%;
+  border-bottom: 2px solid #303030;
+}
+.search img:last-of-type {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 20px;
+}
+.search input {
+  background-color: black;
+  border: none;
+  width: 88%;
+  margin-left: 1.4px;
+  padding-left: 8px;
+  font-size: 1.1em;
+}
+.search input:focus {
+  outline: none;
+}
+nav .right {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.right img:last-child {
+  border-radius: 50%;
+  width: 30px;
+}
+main {
+  display: flex;
+  background-color: black;
+  min-height: 92vh;
+}
+section {
+  margin-top: 30px;
+  padding-left: 2rem;
+  width: 70vw;
+}
+#yt-video {
+ width: 100%;
+ height: 30vw;
+  border-radius: 15px;
+  border: none;
+}
+.title-with-stats {
+  border-bottom: 2px solid rgba(211, 211, 211, 0.2);
+}
+.video-title {
+  font-size: 1.3em;
+  margin: 10px 0;
+}
+.statistics {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+.statistics .right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+}
+.right .item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.views {
+  font-weight: 500;
+  opacity: 0.9;
+}
+.channel {
+  margin-top: 20px;
+}
+
+.channel-top .channel-name {
+  font-weight: 500;
+  font-size: 1.2em;
+  opacity: 1;
+}
+.channel-top .channel-name:hover{
+  cursor: pointer;
+}
+.channel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.subscribe {
+  background-color: red;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+}
+.description {
+  margin-top: 30px;
+}
+.commentsBox {
+  margin-top: 20px;
+}
+.comments-top {
+  font-size: 1.8em;
+  display: flex;
+  justify-content: space-between;
+}
+.comments-btn{
+  background-color: blue;
+  padding: 5px 10px;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.comment {
+  padding: 0 10px;
+}
+.comment-item {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+.comment-item img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.comment-bottom {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.comment-item button {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+}
+.comment-item button:hover {
+  color: rgb(73, 73, 253);
+  cursor: pointer;
+}
+
+/* Side videos */
+#side-videos {
+  margin: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 30vw;
+}
+ .video-card {
+  display: flex;
+  gap: 20px;
+  border-radius: 5px;
+}
+.video-card:hover {
+  cursor: pointer;
+  background-color: #303030;
+}
+.video-card img {
+  width: 40%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+.title {
+  font-size: 0.8em;
+  font-weight: 300;
+}
+.channel-name {
+  margin-top: 10px;
+  font-weight: 200;
+  font-size: 0.8em;
+  opacity: 0.7;
+}
+
+.channel-name:hover{
+opacity: 1;
+}
+
+@media screen and (max-width : 850px) {
+  main{
+    flex-direction: column;    
+  }
+  .subscribe{
+    margin-right: 20px;
+  }
+  section,#side-videos{
+    width: 100%;
+  }
+  #side-videos{
+    margin: 0;
+    padding: 30px 30px 0 30px;
+  }
+  #yt-video{
+    padding-right: 20px;
+    height: 50vh;
+  }
+  .title-with-stats,.channel{
+    font-size: 14px;
+  }
+}
